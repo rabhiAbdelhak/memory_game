@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lobster&family=Moo+Lah+Lah&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>MEMORY GAME</title>
+  </head>
+  <body>
+    <h1>MEMORY - GAME</h1>
+    <div id="start-overlay" class="overlay visible">
+      <h1>WELCOME TO THE MEMORY GAME</h1>
+      <div class="menu">
+        <div class="lavel">
+          <ul>
+            <li data-nbcards="8" data-time="60">8 Cards : You will Have finish it in 60 seconds</li>
+            <li data-nbcards="12" data-time="100">12 Cards : You will Have finish it in 100 seconds</li>
+            <li data-nbcards="16" data-time="120" class="active">16 Cards : You will Have finish it in 120 seconds</li>
+          </ul>
+        </div>
+        <div class="options">
+            <div class="sound">
+                <input type="checkbox" id='sound' checked>
+                <Label for='sound'>Sound</Label>
+            </div>
+        </div>
+        <button class="start-btn start-instruction">Play</button>
+      </div>
+    </div>
+    <div id="game-over-overlay" class="overlay start-instruction">
+      <h1>GAME OVER</h1>
+      <h4>Click to Restart</h4>
+    </div>
+    <div id="victory-overlay" class="overlay start-instruction">
+      <h1>YOU WIN</h1>
+      <h4>Click to Restart</h4>
+    </div>
+    <div class="game-container">
+      <div class="game-info-container">
+        <div class="time-conatiner">TIME : <span class="time">-</span></div>
+        <div class="flips">MOVES : <span id="counter">0</span></div>
+      </div>
+      <div class="cards">
+        <div class="card">
+          <div class="card-back card-face">
+            <img
+              class="corner top-left"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner top-right"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-left"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-right"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img class="spider" src="images/Spider.png" alt="" />
+          </div>
+          <div class="card-front card-face">
+            <img
+              class="corner top-left"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner top-right"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-left"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-right"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img class="card-value" src="images/Bat.png" alt="Value" />
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img
+              class="corner top-left"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner top-right"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-left"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-right"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img class="spider" src="images/Spider.png" alt="" />
+          </div>
+          <div class="card-front card-face">
+            <img
+              class="corner top-left"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner top-right"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-left"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-right"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img class="card-value" src="images/Bat.png" alt="Value" />
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img
+              class="corner top-left"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner top-right"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-left"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-right"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img class="spider" src="images/Spider.png" alt="" />
+          </div>
+          <div class="card-front card-face">
+            <img
+              class="corner top-left"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner top-right"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-left"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-right"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img class="card-value" src="images/Cauldron.png" alt="Value" />
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img
+              class="corner top-left"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner top-right"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-left"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-right"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img class="spider" src="images/Spider.png" alt="" />
+          </div>
+          <div class="card-front card-face">
+            <img
+              class="corner top-left"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner top-right"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-left"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-right"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img class="card-value" src="images/Cauldron.png" alt="Value" />
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img
+              class="corner top-left"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner top-right"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-left"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-right"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img class="spider" src="images/Spider.png" alt="" />
+          </div>
+          <div class="card-front card-face">
+            <img
+              class="corner top-left"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner top-right"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-left"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-right"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img class="card-value" src="images/Skull.png" alt="Value" />
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img
+              class="corner top-left"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner top-right"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-left"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-right"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img class="spider" src="images/Spider.png" alt="" />
+          </div>
+          <div class="card-front card-face">
+            <img
+              class="corner top-left"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner top-right"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-left"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-right"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img class="card-value" src="images/Skull.png" alt="Value" />
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img
+              class="corner top-left"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner top-right"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-left"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-right"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img class="spider" src="images/Spider.png" alt="" />
+          </div>
+          <div class="card-front card-face">
+            <img
+              class="corner top-left"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner top-right"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-left"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-right"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img class="card-value" src="images/Pumpkin.png" alt="Value" />
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img
+              class="corner top-left"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner top-right"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-left"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-right"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img class="spider" src="images/Spider.png" alt="" />
+          </div>
+          <div class="card-front card-face">
+            <img
+              class="corner top-left"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner top-right"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-left"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-right"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img class="card-value" src="images/Pumpkin.png" alt="Value" />
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img
+              class="corner top-left"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner top-right"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-left"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-right"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img class="spider" src="images/Spider.png" alt="" />
+          </div>
+          <div class="card-front card-face">
+            <img
+              class="corner top-left"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner top-right"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-left"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-right"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img class="card-value" src="images/Eye.png" alt="Value" />
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img
+              class="corner top-left"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner top-right"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-left"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-right"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img class="spider" src="images/Spider.png" alt="" />
+          </div>
+          <div class="card-front card-face">
+            <img
+              class="corner top-left"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner top-right"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-left"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-right"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img class="card-value" src="images/Eye.png" alt="Value" />
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img
+              class="corner top-left"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner top-right"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-left"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-right"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img class="spider" src="images/Spider.png" alt="" />
+          </div>
+          <div class="card-front card-face">
+            <img
+              class="corner top-left"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner top-right"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-left"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-right"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img class="card-value" src="images/Dracula.png" alt="Value" />
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img
+              class="corner top-left"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner top-right"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-left"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-right"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img class="spider" src="images/Spider.png" alt="" />
+          </div>
+          <div class="card-front card-face">
+            <img
+              class="corner top-left"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner top-right"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-left"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-right"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img class="card-value" src="images/Dracula.png" alt="Value" />
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img
+              class="corner top-left"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner top-right"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-left"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-right"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img class="spider" src="images/Spider.png" alt="" />
+          </div>
+          <div class="card-front card-face">
+            <img
+              class="corner top-left"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner top-right"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-left"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-right"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img class="card-value" src="images/Ghost.png" alt="Value" />
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img
+              class="corner top-left"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner top-right"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-left"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-right"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img class="spider" src="images/Spider.png" alt="" />
+          </div>
+          <div class="card-front card-face">
+            <img
+              class="corner top-left"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner top-right"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-left"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-right"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img class="card-value" src="images/Ghost.png" alt="Value" />
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img
+              class="corner top-left"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner top-right"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-left"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-right"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img class="spider" src="images/Spider.png" alt="" />
+          </div>
+          <div class="card-front card-face">
+            <img
+              class="corner top-left"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner top-right"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-left"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-right"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img class="card-value" src="images/Bones.png" alt="Value" />
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-back card-face">
+            <img
+              class="corner top-left"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner top-right"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-left"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-right"
+              src="Images/Cobweb.png"
+              alt="cowebPNG"
+            />
+            <img class="spider" src="images/Spider.png" alt="" />
+          </div>
+          <div class="card-front card-face">
+            <img
+              class="corner top-left"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner top-right"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-left"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img
+              class="corner bottom-right"
+              src="Images/CobwebGrey.png"
+              alt="cowebPNG"
+            />
+            <img class="card-value" src="images/Bones.png" alt="Value" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/main.js"></script>
+  </body>
+</html>
